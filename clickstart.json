@@ -1,0 +1,20 @@
+{
+    "id": "rubyci-clickstart",
+    "name": "CI your ruby apps",
+    "source": "github",
+    "description" : "Shows how to do CI with native ruby on cloudbees",
+    "icon" : "https://s3.amazonaws.com/cloudbees-downloads/clickstart/chrome-logo.png",    
+    "doc-url" : "https://github.com/CloudBees-community/rubyci-clickstart",
+    "disabled" : true,
+
+    "supported-by" : "community",
+    "order" : 5,
+    
+    "build-with-jenkins": {
+    "template": {
+            "type": "https://raw.github.com/CloudBees-community/rubyci-clickstart/master/jenkins.xml",
+            "options": {
+            }            
+        }
+    }
+}

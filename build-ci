@@ -1,0 +1,17 @@
+######### RUBY INSTALL
+curl -s -o use-ruby https://repository-cloudbees.forge.cloudbees.com/distributions/ci-addons/ruby/use-ruby
+RUBY_VERSION=1.9.3-p194 . ./use-ruby
+
+gem install bundler
+
+bundle install --deployment --without=development
+
+# Clear out the working areas
+bundle exec rake clobber
+
+bundle exec rake db:migrate:reset
+bundle exec ./script/node-create
+
+# We want all the tests to complete; even if something blows up
+set +e
+bundle exec rake test:ci:$STAGE --trace
