@@ -1,3 +1,5 @@
+$: << File.dirname(__FILE__) + "/lib"
+
 require "rubygems"
 
 require "bundler"
@@ -10,4 +12,4 @@ CLOBBER.include('pkg/*')
 CLOBBER.include('coverage/*')
 CLOBBER.include('spec/reports/*')
 
-require 'lib/tasks/ci'
+require 'tasks/ci'
