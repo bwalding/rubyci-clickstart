@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>CI for Ruby apps on cloudbees</description>
+  <description>Skeleton Ruby project for CI at CloudBees</description>
   <logRotator>
     <daysToKeep>60</daysToKeep>
     <numToKeep>-1</numToKeep>
@@ -65,13 +65,18 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>set +x 
-./build-ci
+      <command>set +x
+./bin/run-ci
 </command>
     </hudson.tasks.Shell>
     
   </builders>
   <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>pkg/*.gem</artifacts>
+      <latestOnly>false</latestOnly>
+      <allowEmptyArchive>false</allowEmptyArchive>
+    </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.junit.JUnitResultArchiver>
       <testResults>*/reports/*.xml</testResults>
       <keepLongStdio>false</keepLongStdio>

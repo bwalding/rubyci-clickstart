@@ -1,0 +1,28 @@
+#!/bin/sh
+BASE=`dirname $0`
+ENVIRONMENT=${ENVIRONMENT:-cloudbees}
+
+######### POSTGRES INSTALL AND CONFIGURE
+POSTGRESQL_VERSION=9.2.4 . ${BASE}/${ENVIRONMENT}-install-postgresql
+
+
+######### RUBY INSTALL AND CONFIGURE
+RUBY_VERSION=2.0.0-p247 . ${BASE}/${ENVIRONMENT}-install-ruby
+gem install bundler --conservative
+
+
+if [ $ENVIRONMENT == 'cloudbees' ]; then 
+  DEPLOYMENT=--deployment
+else
+  DEPLOYMENT=--no-deployment
+fi
+######### APPLICATION CONFIGURE
+bundle check || bundle install ${DEPLOYMENT} --without=development --without production
+
+# Clear out the working areas
+bundle exec rake clobber
+
+######### APPLICATION TEST
+# Don't fail the whole build on a test error
+set +e
+bundle exec rake ci:unit ci:gem

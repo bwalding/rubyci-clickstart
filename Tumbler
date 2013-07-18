@@ -1,0 +1,8 @@
+# Names your gem
+gem_name 'rubyci-clickstart'
+
+# Use this file to track the version number
+version_file 'lib/version.rb'
+
+# Use this file for your changelog
+changelog_file 'CHANGELOG'

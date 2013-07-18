@@ -1,0 +1,6 @@
+#!/bin/sh
+# Call with POSTGRESQL_VERSION set
+
+######### POSTGRES INSTALL
+curl -s -o use-postgresql https://repository-cloudbees.forge.cloudbees.com/distributions/ci-addons/postgresql/use-postgresql
+. ./use-postgresql

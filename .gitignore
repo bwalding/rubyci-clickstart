@@ -1,0 +1,6 @@
+/spec/reports
+/.bundle
+/use-postgresql
+/use-ruby
+/vendor
+/pkg
